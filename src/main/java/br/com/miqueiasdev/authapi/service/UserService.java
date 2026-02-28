@@ -3,6 +3,7 @@ package br.com.miqueiasdev.authapi.service;
 import br.com.miqueiasdev.authapi.model.User;
 import br.com.miqueiasdev.authapi.repo.UserRepo;
 import br.com.miqueiasdev.authapi.security.MyToken;
+import br.com.miqueiasdev.authapi.security.TokenUtil;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -45,7 +46,7 @@ public class UserService implements IUserService {
         User storedUser = repo.findByUsername(user.getUsername()).orElseThrow(()-> new RuntimeException("User not Found."));
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (encoder.matches(user.getPassword(), storedUser.getPassword())){
-            return new MyToken("security123");
+            return TokenUtil.encode(storedUser);
         }
         throw new RuntimeException("Unathourized user");
     }
