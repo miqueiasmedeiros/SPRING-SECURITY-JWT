@@ -16,8 +16,8 @@ import java.util.Date;
 
 public class TokenUtil {
 
-    public static final String EMISSOR = "MiqueiasDev";
-    public static final long EXPIRATION = 15 * 1000;
+    public static final String EMISSOR = "Erica";
+    public static final long EXPIRATION = 60 * 60 * 1000;
     public static final String SECRET_KEY = "0123456789012345678901234567890123456789";
     public static MyToken encode(User user){
         try {
